@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PostgreSQLをいじる | ヾ(*ﾟｰﾟ)ｼ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="「7つのデータベース 7つの世界」でいろんなデータベースで遊んでみよう企画, PostgreSQL編">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PostgreSQLをいじる">
+<meta property="og:url" content="http://shamison.com/2015/03/18/postgresql-e3-82-92-e3-81-84-e3-81-98-e3-82-8b/index.html">
+<meta property="og:site_name" content="ヾ(*ﾟｰﾟ)ｼ">
+<meta property="og:description" content="「7つのデータベース 7つの世界」でいろんなデータベースで遊んでみよう企画, PostgreSQL編">
+<meta property="og:updated_time" content="2015-06-24T21:49:19.913Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PostgreSQLをいじる">
+<meta name="twitter:description" content="「7つのデータベース 7つの世界」でいろんなデータベースで遊んでみよう企画, PostgreSQL編">
+  
+    <link rel="alternative" href="/atom.xml" title="ヾ(*ﾟｰﾟ)ｼ" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ヾ(*ﾟｰﾟ)ｼ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">メモ帳</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+        <a class="main-nav-link" href="/profile">Profile</a>
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://shamison.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-postgresql-e3-82-92-e3-81-84-e3-81-98-e3-82-8b" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/18/postgresql-e3-82-92-e3-81-84-e3-81-98-e3-82-8b/" class="article-date">
+  <time datetime="2015-03-18T08:35:24.000Z" itemprop="datePublished">2015-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/データベース/">データベース</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PostgreSQLをいじる
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>「7つのデータベース 7つの世界」でいろんなデータベースで遊んでみよう企画, PostgreSQL編<br><a id="more"></a></p>
+<h1 id="インストール">インストール</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">sudo</span> pacman -S postgresql</span><br></pre></td></tr></table></figure>
+<p>Wikiをみたら, initせなあかんみたいです → <a href="https://archlinuxjp.kusakata.com/wiki/PostgreSQL#PostgreSQL_.E3.81.AE.E3.82.A4.E3.83.B3.E3.82.B9.E3.83.88.E3.83.BC.E3.83.AB" target="_blank" rel="external">wiki</a></p>
+<p>設定のためにpostgresというユーザでログインし直す.<br>(postgresというユーザが,インストールと同時に追加されている)</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shamison@<span class="keyword">arch</span> ~ $ sudo -i -<span class="keyword">u</span> postgres</span><br><span class="line"></span><br><span class="line">[postgres@<span class="keyword">arch</span> ~]$ initdb --locale ja_JP.UTF-8 -<span class="keyword">E</span> UTF8 -<span class="keyword">D</span> '/<span class="keyword">var</span>/lib/postgres/data'</span><br></pre></td></tr></table></figure>
+<p>systemdで起動.</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[postgres<span class="variable">@arch</span> ~]<span class="variable">$ </span>systemctl start postgresql</span><br></pre></td></tr></table></figure>
+<p>ユーザ「postgres」のパスワードを設定</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[postgres<span class="variable">@arch</span> ~]<span class="variable">$ </span>exit</span><br><span class="line">shamison<span class="variable">@arch</span> ~ <span class="variable">$ </span>sudo passwd postgres</span><br></pre></td></tr></table></figure>
+<h1 id="[問題]ログインユーザでcreatedbできぬ-">[問題]ログインユーザでcreatedbできぬ.</h1><p>-&gt; 権限がなかったから.</p>
+<p>参考 → <a href="http://bit.ly/1Cuv1Cd" target="_blank" rel="external">PostgreSQL8でpostgresユーザ以外のユーザにcreatedbを実行させる方法 - r_nobuホームページ</a></p>
+<p>以下引用</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># psqlでデータベースに接続</span></span><br><span class="line">[postgres@arch ~]$ psql</span><br><span class="line"></span><br><span class="line"><span class="comment"># (1)ロールを作成する</span></span><br><span class="line"><span class="variable">postgres=</span><span class="comment"># create role shamison;</span></span><br><span class="line">CREATE ROLE</span><br><span class="line"></span><br><span class="line"><span class="comment">#(2)ロールにログイン権限を付与する</span></span><br><span class="line"><span class="variable">postgres=</span><span class="comment"># alter role shamison login;</span></span><br><span class="line">ALTER ROLE</span><br><span class="line"></span><br><span class="line"><span class="comment">#(3)ロールにcreatedbの権限を付与する</span></span><br><span class="line"><span class="variable">postgres=</span><span class="comment"># alter role shamison createdb;</span></span><br><span class="line">ALTER ROLE</span><br><span class="line"></span><br><span class="line"><span class="comment"># ctrl+zで抜ける</span></span><br><span class="line"><span class="variable">postgres=</span><span class="comment"># ^Z</span></span><br></pre></td></tr></table></figure>
+<h1 id="以下さわってて感じたこと">以下さわってて感じたこと</h1><h3 id="-_作ってもないのに何このテーブルは…">- 作ってもないのに何このテーブルは…</h3><p>-&gt; システムテーブル</p>
+<p>自分が作ったテーブルの統計情報や，メタデータを取得する事ができる。</p>
+<p>参考 → <a href="http://d.hatena.ne.jp/language_and_engineering/20100220/p1" target="_blank" rel="external">PostgreSQLのシステムテーブル入門　（暗記用のSQL集） - 主に言語とシステム開発に関して</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shamison.com/2015/03/18/postgresql-e3-82-92-e3-81-84-e3-81-98-e3-82-8b/" data-id="cibbdfboa001fq9cmnr77z9mc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ArchLinux/">ArchLinux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/25/postgresql-e3-81-a7curd/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PostgreSQLでCURD
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/11/sicp-e3-81-ae-e5-95-8f-e9-a1-8c-e3-82-92github-io-e3-81-ab-e3-81-be-e3-81-a8-e3-82-81-e3-81-9f-e3-81-8b-e3-81-a3-e3-81-9f/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SICPの問題をgithub.ioにまとめたかった</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/18/e3-81-9f-e3-81-b6-e3-82-93systemd-e3-81-af-e4-be-bf-e5-88-a9-e3-81-a0-e3-81-a8-e6-80-9d-e3-81-86/">たぶんSystemdは便利だと思う</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/25/postgresql-e3-81-a7curd/">PostgreSQLでCURD</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/18/postgresql-e3-82-92-e3-81-84-e3-81-98-e3-82-8b/">PostgreSQLをいじる</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/11/sicp-e3-81-ae-e5-95-8f-e9-a1-8c-e3-82-92github-io-e3-81-ab-e3-81-be-e3-81-a8-e3-82-81-e3-81-9f-e3-81-8b-e3-81-a3-e3-81-9f/">SICPの問題をgithub.ioにまとめたかった</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/10/slick-e3-81-a7sqlite-e3-82-92-e3-81-84-e3-81-98-e3-81-a3-e3-81-9f/">SlickでSQLiteをいじった</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ArchLinux/" style="font-size: 20px;">ArchLinux</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/minecraft/" style="font-size: 15px;">minecraft</a> <a href="/tags/modding/" style="font-size: 15px;">modding</a> <a href="/tags/nanoc/" style="font-size: 10px;">nanoc</a> <a href="/tags/postgresql/" style="font-size: 15px;">postgresql</a> <a href="/tags/scala/" style="font-size: 20px;">scala</a> <a href="/tags/slick/" style="font-size: 10px;">slick</a> <a href="/tags/sqlite/" style="font-size: 10px;">sqlite</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/twitter4j/" style="font-size: 10px;">twitter4j</a> <a href="/tags/update-name/" style="font-size: 20px;">update_name</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/さくらvps/" style="font-size: 10px;">さくらvps</a> <a href="/tags/ドットインストール/" style="font-size: 10px;">ドットインストール</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">5月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">3月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">2月 2015</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 shamison<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
