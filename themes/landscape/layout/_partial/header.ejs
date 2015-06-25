@@ -3,11 +3,11 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="<%- url_for() %>" id="logo"><%= config.title %></a>
+        <a href="/blog<%- url_for() %>" id="logo"><%= config.title %></a>
       </h1>
       <% if (theme.subtitle){ %>
         <h2 id="subtitle-wrap">
-          <a href="<%- url_for() %>" id="subtitle"><%= theme.subtitle %></a>
+          <a href="/blog<%- url_for() %>" id="subtitle"><%= theme.subtitle %></a>
         </h2>
       <% } %>
     </div>
@@ -17,7 +17,6 @@
         <% for (var i in theme.menu){ %>
           <a class="main-nav-link" href="<%- url_for(theme.menu[i]) %>"><%= i %></a>
         <% } %>
-        <a class="main-nav-link" href="/profile">Profile</a>
       </nav>
       <nav id="sub-nav">
         <% if (theme.rss){ %>
