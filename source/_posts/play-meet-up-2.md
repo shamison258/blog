@@ -1,4 +1,4 @@
-title: play_meet_up_2
+title: Play meetup 2 に行ってきました
 date: 2015-07-05 14:54:57
 tags:
 - scala
@@ -7,10 +7,11 @@ categories:
 - Scala
 ---
 
-Scala全く分からないのに行ってきました〜.
-せっかくなので頑張ってまとめたい！(無理)
+Scala全く分からないのに行ってきました〜
+せっかくなので頑張ってまとめたい！(無理でした！)
 
-[Play meetup 2 - 日本Playframeworkユーザー会 | Doorkeeper](http://bit.ly/1Cim9QK)
+- [Play meetup 2 - 日本Playframeworkユーザー会 | Doorkeeper](http://bit.ly/1Cim9QK)
+- [play meetup 2](http://togetter.com/li/843451)
 
 <!--more-->
 ---
