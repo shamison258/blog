@@ -13,8 +13,9 @@ Scala全く分からないのに行ってきました〜.
 [Play meetup 2 - 日本Playframeworkユーザー会 | Doorkeeper](http://bit.ly/1Cim9QK)
 
 <!--more-->
+---
 
-### Play 2.3 から 2.4 へアップデートした話\(@ussy00 さん\)
+## Play 2.3 から 2.4 へアップデートした話\(@ussy00 さん\)
 - 資料: [Play 2.3 から 2.4 へアップデートした話](http://bit.ly/1CiqByK)
 
 #### 変更について
@@ -51,7 +52,9 @@ Scala全く分からないのに行ってきました〜.
 #### 感想
 - DIが分からないつらい
 
-### なぜPlayのコントローラで継続モナドを使うと便利なのか？ -ドワンゴアカウントシステム新機能開発事例より-\(@pab_tech さん\)
+---
+
+## なぜPlayのコントローラで継続モナドを使うと便利なのか？ -ドワンゴアカウントシステム新機能開発事例より-\(@pab_tech さん\)
 
 - 資料: [なぜPlayのコントローラで継続モナドを使うと便利なのか？](http://bit.ly/1Ciozie)
 
@@ -67,7 +70,9 @@ Scala全く分からないのに行ってきました〜.
 - モナド分からないつらい
 - でもコード綺麗不思議
 
-### play2-auth-social の紹介\(@gakuzzzz さん\)
+---
+
+## play2-auth-social の紹介\(@gakuzzzz さん\)
 - スライドはナシ
   - github [play2-auth](https://github.com/t2v/play2-auth)
 - 認証周りのライブラリ
@@ -79,7 +84,9 @@ Scala全く分からないのに行ってきました〜.
 #### 感想
 - Scalaやろう\(´･\_･\`\) ...
 
-### Reactive Streams 入門\(@okapies さん\)
+---
+
+## Reactive Streams 入門\(@okapies さん\)
 - 資料: [Reactive Streams 入門 #jjug](http://bit.ly/1GZ3GoG)
 - 補足資料: [Play and Reactive Streams #play_ja](http://bit.ly/1GZ3LZB)
 
@@ -149,8 +156,11 @@ Scala全く分からないのに行ってきました〜.
 - わかりやすい\(分かったとは言ってない\)
 - Twitterから: [JJUG ナイトセミナーで Reactive Streams について発表しました](http://okapies.hateblo.jp/entry/2015/06/26/024505)
 
-### LT
+---
+
+## LT
 - 多分まとめられる力などない
+- 資料等抜けがあります...
 
 #### pixivにおけるPlayとThrift
 - [pixivにおけるPlayとThrift](http://bit.ly/1LLTzsS)
@@ -191,6 +201,19 @@ Scala全く分からないのに行ってきました〜.
 - mackarel
   - Playでできてる
 - Play 2.4なら簡単だよ
+
+---
+
+## 総括
+- 行ってみるかってノリで行ってみたら結構楽しかったので良さがあった
+- Playを趣味や, 大学で使う上で, まだ設定等が甘々でしか無いことに気づいた
+  - CPとか使ってない...
+  - そもそもScalaじゃないヾ(\*ﾟｰﾟ)ｼ
+- S c a l a つ か っ て な い や ん わ た し
+- Scalaを使おうと思った
+- 次回(？)等にしっかりとした理解ができるようになりたい...
+
+---
 
 ### 参考にしたもの
 
